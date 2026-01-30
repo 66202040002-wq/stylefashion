@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>แนะนำโทนสีและสไตล์การแต่งตัว</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#F7F3EE] p-6 font-sans text-[#4A3B2A]">
+
+  <div class="max-w-4xl mx-auto p-8 bg-[#FFF8F0] rounded-3xl shadow-lg">
+
+    <!-- ===== หัวข้อหลัก ===== -->
+    <div class="text-center mb-10">
+      <h1 class="text-4xl font-extrabold text-[#6B4F3F]">
+        แนะนำสีผิวและสไตล์การแต่งตัว
+      </h1>
+      <div class="flex justify-center mt-4">
+        <span
+          class="w-32 h-1 bg-gradient-to-r from-[#CBB89D] to-[#8B6F4E] rounded-full"></span>
+      </div>
+      <p class="text-[#7A6651] mt-3">
+        เลือกสีผิว รูปร่าง และโครงหน้า เพื่อคำแนะนำที่เหมาะกับคุณ
+      </p>
+    </div>
+
+    <!-- ===== ส่วนเลือกข้อมูล ===== -->
+    <h2 class="flex items-center gap-3 text-xl font-bold text-[#6B4F3F] mb-4">
+      <span class="w-2 h-6 bg-[#8B6F4E] rounded"></span>
+      ข้อมูลเบื้องต้น
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+
+      <!-- โทนสีผิว -->
+      <div class="flex flex-col items-center bg-[#F3ECE4] p-4 rounded-xl">
+        <label class="font-semibold mb-2">โทนสีผิว</label>
+        <select id="skin"
+          class="p-2 rounded border border-[#D6C4A8] bg-[#FFFDF9] w-full">
+          <option>ผิวขาว</option>
+          <option>ผิวขาวเหลือง</option>
+          <option>ผิวแทน</option>
+          <option>ผิวสองสี</option>
+          <option>ผิวน้ำผึ้ง</option>
+          <option>ผิวดำ</option>
+        </select>
+       <img id="skinImg"
+  src="https://via.placeholder.com/100x150?text=ผิวขาว"
+  class="mt-3 w-40 h-36 object-cover rounded-2xl 
+         border-4 border-[#E3D5C3] 
+         shadow-md bg-white p-1">
+      </div>
+
+      <!-- รูปร่าง -->
+      <div class="flex flex-col items-center bg-[#F3ECE4] p-4 rounded-xl">
+        <label class="font-semibold mb-2">รูปร่าง</label>
+        <select id="body"
+          class="p-2 rounded border border-[#D6C4A8] bg-[#FFFDF9] w-full">
+          <option>หุ่นสามเหลี่ยม</option>
+          <option>หุ่นลูกแพร์</option>
+          <option>หุ่นนาฬิกาทราย</option>
+          <option>หุ่นสี่เหลี่ยม</option>
+          <option>หุ่นแอปเปิ้ล</option>
+        </select>
+        <img id="bodyImg"
+  src="https://via.placeholder.com/100x150?text=สามเหลี่ยม"
+  class="mt-3 w-40 h-36 object-cover rounded-2xl
+         border-4 border-[#E3D5C3]
+         shadow-md bg-white p-1">
+      </div>
+
+      <!-- โครงหน้า -->
+      <div class="flex flex-col items-center bg-[#F3ECE4] p-4 rounded-xl">
+        <label class="font-semibold mb-2">โครงหน้า</label>
+        <select id="face"
+          class="p-2 rounded border border-[#D6C4A8] bg-[#FFFDF9] w-full">
+          <option>กลม</option>
+          <option>รูปไข่</option>
+          <option>เหลี่ยม</option>
+          <option>หัวใจ</option>
+        </select>
+       <img id="faceImg"
+  src="https://via.placeholder.com/100x150?text=กลม"
+  class="mt-3 w-40 h-36 object-cover rounded-2xl
+         border-4 border-[#E3D5C3]
+         shadow-md bg-white p-1">
+      </div>
+
+    </div>
+
+    <!-- ปุ่ม -->
+    <div class="flex justify-center gap-4 mb-10">
+      <button id="showBtn"
+        class="px-8 py-3 bg-gradient-to-r from-[#CBB89D] to-[#8B6F4E]
+               text-white rounded-xl shadow-lg hover:scale-105 transition">
+        แนะนำให้ฉัน
+      </button>
+      <button id="resetBtn"
+        class="px-8 py-3 border border-[#CBB89D]
+               text-[#6B4F3F] rounded-xl
+               hover:bg-[#EFE6DA] transition">
+        รีเซ็ต
+      </button>
+    </div>
+
+    <!-- ===== ผลลัพธ์ ===== -->
+    <div id="result"
+      class="hidden bg-[#F3ECE4] p-8 rounded-2xl shadow-inner">
+
+      <h2 class="text-3xl font-bold text-center text-[#6B4F3F] mb-8">
+        ผลลัพธ์สำหรับคุณ
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
+
+        <div>
+          <img id="resultSkinImg"
+            class="mx-auto rounded-full shadow-md">
+          <h3 class="font-semibold mt-3">โทนสีผิว</h3>
+          <p id="skinText"></p>
+        </div>
+
+        <div>
+          <img id="resultBodyImg"
+            class="mx-auto rounded shadow-md">
+          <h3 class="font-semibold mt-3">รูปร่าง</h3>
+          <p id="bodyText"></p>
+        </div>
+
+        <div>
+          <img id="resultFaceImg"
+            class="mx-auto rounded-full shadow-md">
+          <h3 class="font-semibold mt-3">โครงหน้า</h3>
+          <p id="faceText"></p>
+        </div>
+
+      </div>
+
+      <h3 class="flex items-center gap-2 font-bold text-lg mb-2">
+        <span class="w-1 h-5 bg-[#8B6F4E] rounded"></span>
+        โทนสีที่แนะนำ
+      </h3>
+     <div id="colors" class="flex flex-wrap gap-2 mb-4"></div>
+
+<div id="colorImages" class="grid grid-cols-3 gap-4 mb-6">
+  <img class="rounded-lg shadow-md w-full h-[150px] object-cover">
+  <img class="rounded-lg shadow-md w-full h-[150px] object-cover">
+  <img class="rounded-lg shadow-md w-full h-[150px] object-cover">
+</div>
+
+      <h3 class="flex items-center gap-2 font-bold text-lg mb-2">
+        <span class="w-1 h-5 bg-[#8B6F4E] rounded"></span>
+        คำแนะนำการแต่งหน้า
+      </h3>
+      <p id="makeup" class="mb-4"></p>
+
+<div id="makeupImages" class="grid grid-cols-3 gap-4 mb-6">
+  <img class="rounded-lg shadow-md w-full h-[250px] object-cover">
+  <img class="rounded-lg shadow-md w-full h-[250px] object-cover">
+  <img class="rounded-lg shadow-md w-full h-[250px] object-cover">
+</div>
+
+
+      <h3 class="flex items-center gap-2 font-bold text-lg mb-2">
+        <span class="w-1 h-5 bg-[#8B6F4E] rounded"></span>
+        สไตล์การแต่งกาย
+      </h3>
+     <p id="style" class="mb-4"></p>
+
+<div id="styleImages" class="grid grid-cols-3 gap-4">
+  <img class="rounded-lg shadow-md w-full h-[250px] object-cover">
+  <img class="rounded-lg shadow-md w-full h-[250px] object-cover">
+  <img class="rounded-lg shadow-md w-full h-[250px] object-cover">
+</div>
+
+
+    </div>
+
+  </div>
+
+  <script>
+
+    /* ---------------------- รูปภาพที่ใช้ ---------------------- */
+
+    const skinImages = {
+      "ผิวขาว": "data:image/jpeg;base64,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",
+      "ผิวขาวเหลือง": "images/skin/yellow.jpg",
+      "ผิวแทน": "images/skin/tan.jpg",
+      "ผิวสองสี": "images/skin/twotone.jpg",
+      "ผิวน้ำผึ้ง": "images/skin/honey.jpg",
+      "ผิวดำ": "images/skin/black.jpg"
+    };
+
+    const bodyImages = {
+      "หุ่นสามเหลี่ยม": "images/body/triangle.jpg",
+      "หุ่นลูกแพร์": "images/body/pear.jpg",
+      "หุ่นนาฬิกาทราย": "images/body/Hourglass.jpg",
+      "หุ่นสี่เหลี่ยม": "images/body/retangle.jpg",
+      "หุ่นแอปเปิ้ล": "images/body/apple.jpg"
+    };
+
+    const faceImages = {
+      "กลม": "images/face/circle.jpg",
+      "รูปไข่": "images/face/oval.jpg",
+      "เหลี่ยม": "images/face/square.jpg",
+      "หัวใจ": "images/face/heart.jpg"
+    };
+
+    /* ---------------------- คำแนะนำสีผิว ---------------------- */
+
+    const recommendations = {
+      "ผิวขาว": {
+        colors: ["ฟ้าอ่อน", "ชมพูพาสเทล", "เทาอ่อน", "ขาวครีม"],
+        makeup: "โทนชมพูนมอ่อน, แสงทองอ่อนๆ, ลิปสีนู้ด-ชมพูนิดๆ",
+        style: "เสื้อผ้าทรงเข้ารูป โทนพาสเทลและโทนเย็น เพิ่มแอคเซสเซอรี่เงินหรือมุก"
+      },
+      "ผิวขาวเหลือง": {
+        colors: ["ครีมอ่อน", "เขียวมะนาวอ่อน", "น้ำตาลอ่อน"],
+        makeup: "โทนอุ่นเล็กน้อย เช่น บรอนเซอร์อ่อน, บลัชสีน้ำตาล-พีช, ลิปโทนพีช",
+        style: "โทนอบอุ่น/เอิร์ธโทน ชุดที่ยืดหยุ่นตามสรีระ เช่น เดรสเอวสูง"
+      },
+      "ผิวแทน": {
+        colors: ["ส้มเผือก", "เขียวมะกอก", "กรมท่า"],
+        makeup: "โทนอบอุ่นเข้ม เช่น บลัชสีน้ำตาลชมพู, ไฮไลต์ทอง",
+        style: "ผ้าหนา-เท็กซ์เจอร์ชัด เน้นเอวหรือไหล่เพื่อบาลานซ์"
+      },
+      "ผิวสองสี": {
+        colors: ["ส้มแสดอ่อน", "เหลืองมัสตาร์ด", "น้ำตาลอ่อน"],
+        makeup: "คอนทัวร์อ่อน ไฮไลต์ทองแดง ลิปโทนอุ่น",
+        style: "ลายชัดหรือเดรสเปิดไหล่โชว์สัดส่วน"
+      },
+      "ผิวน้ำผึ้ง": {
+        colors: ["ทองแดง", "เขียวมรกต", "เบอร์กันดีเข้ม"],
+        makeup: "โทนทอง บลัชชมพูนิด ลิปคอรัล",
+        style: "ผ้ามันวาวหรือเดรสห่อร่างเน้นเอว"
+      },
+      "ผิวดำ": {
+        colors: ["ขาวครีม", "เหลืองมัสตาร์ด", "ฟ้าไฟฟ้า"],
+        makeup: "คอนทัวร์ชัด ไฮไลต์ทอง ลิปสีสด",
+        style: "สีตัดผิว เช่น ขาว-ครีมหรือสีสด"
+      }
+      
+    };
+    const colorImagesBySkin = {
+  "ผิวขาว": [
+    "images/result/colors/blue.jpg",
+    "images/result/colors/pink.jpg",
+    "images/result/colors/grey.jpg"
+  ],
+  "ผิวขาวเหลือง": [
+    "images/result/colors/cream.jpg",
+    "images/result/colors/limegreen.jpg",
+    "images/result/colors/brown.jpg"
+  ],
+  "ผิวแทน": [
+    "images/result/colors/Taro.jpg",
+    "images/result/colors/olive.jpg",
+    "images/result/colors/navyblue.jpg"
+  ],
+  "ผิวสองสี": [
+    "images/result/colors/Saet.jpg",
+    "images/result/colors/mustard.jpg",
+    "images/result/colors/tawny.jpg"
+  ],
+  "ผิวน้ำผึ้ง": [
+    "images/result/colors/copper.jpg",
+    "images/result/colors/emerald.jpg",
+    "images/result/colors/Burgundy.jpg"
+  ],
+  "ผิวดำ": [
+    "images/result/colors/white.jpg",
+    "images/result/colors/mustard.jpg",
+    "images/result/colors/electric.jpg"
+  ]
+};
+
+    /* ---------------------- เมคอัพตามรูปหน้า ---------------------- */
+
+    const faceMakeup = {
+      "กลม": {
+        contour: "คอนทัวร์กรอบหน้าให้เรียวยาว",
+        highlight: "ไฮไลต์สันจมูก หน้าผาก คาง",
+        blush: "ปัดบลัชเฉียงขึ้น"
+      },
+      "รูปไข่": {
+        contour: "คอนทัวร์บางๆ เพื่อความสมดุล",
+        highlight: "ไฮไลต์โหนกแก้มและใต้ตา",
+        blush: "ปัดตามแนวธรรมชาติ"
+      },
+      "เหลี่ยม": {
+        contour: "คอนทัวร์ขมับและกรามให้ใบหน้าละมุน",
+        highlight: "ไฮไลต์กลางหน้า",
+        blush: "ปัดบลัชวงรี"
+      },
+      "หัวใจ": {
+        contour: "คอนทัวร์ขมับลดความกว้าง",
+        highlight: "ไฮไลต์คางและหน้าผาก",
+        blush: "ปัดกลางแก้ม"
+      }
+    };
+    const makeupImagesByFace = {
+  "กลม": [
+    "images/result/face/contourmakeupcircle.jpg",
+    "images/result/makeup/blushcircle.jpg",
+    "images/face/makeupcircle.jpg"
+  ],
+  "รูปไข่": [
+    "images/result/face/contourmakeupoval.jpg",
+    "images/result/makeup/blushoval.jpg",
+    "images/face/makeuptriangle.jpg"
+  ],
+  "เหลี่ยม": [
+    "images/result/face/contourmakeupsquare.jpg",
+    "images/result/makeup/blushsquare.jpg",
+    "images/face/makeupoval.jpg"
+  ],
+  "หัวใจ": [
+    "images/result/face/contourmakeupheart.jpg",
+    "images/result/makeup/blushheart.jpg",
+    "images/face/makeupheart.jpg"
+  ]
+};
+
+    /* ---------------------- สไตล์ตามรูปร่าง ---------------------- */
+
+    const bodyStyle = {
+      "หุ่นสามเหลี่ยม": {
+        style: "เสื้อเพิ่มความกว้างไหล่ เช่น คอวีกว้าง หรือมีดีเทล"
+      },
+      "หุ่นลูกแพร์": {
+        style: "เสื้อสีอ่อนเน้นช่วงบน + กระโปรงเอสีเข้ม"
+      },
+      "หุ่นนาฬิกาทราย": {
+        style: "เสื้อเข้ารูป เน้นเอว เช่น wrap dress"
+      },
+      "หุ่นสี่เหลี่ยม": {
+        style: "เสื้อจับเอว เพิ่มส่วนโค้งด้วยระบาย"
+      },
+      "หุ่นแอปเปิ้ล": {
+        style: "คอวี เน้นช่วงไหล่ คู่กับกางเกงทรงตรง"
+      }
+    };
+    const styleImagesByBody = {
+  "หุ่นสามเหลี่ยม": [
+    "images/result/style/trianglestyle.jpg",
+    "images/result/style/styletriangle.jpg",
+    "images/result/style/trianglepant.jpg"
+  ],
+  "หุ่นลูกแพร์": [
+    "images/result/style/pearstyle.jpg",
+    "images/result/style/stylepear.jpg",
+    "images/result/style/paerpant.jpg"
+  ],
+  "หุ่นนาฬิกาทราย": [
+    "images/result/style/hourglessstyle.jpg",
+    "images/result/style/stylehourglass.jpg",
+    "images/result/style/hourglasspant.jpg"
+  ],
+  "หุ่นสี่เหลี่ยม": [
+    "images/result/style/rectanglestyle.jpg",
+    "images/result/style/stylerectangle.jpg",
+    "images/result/style/rectanglepant.jpg"
+  ],
+  "หุ่นแอปเปิ้ล": [
+    "images/result/style/applestyle.jpg",
+    "images/result/style/styleapple.jpg",
+    "images/result/style/applepant.jpg"
+  ]
+};
+
+    /* ---------------------- ฟังก์ชันคำนวณ ---------------------- */
+
+    function calculateMakeup(skin, face) {
+      const skinSet = recommendations[skin];
+      const faceSet = faceMakeup[face];
+
+      return `
+        • <strong>โทนตามสีผิว:</strong> ${skinSet.makeup}<br>
+        • <strong>ตามรูปหน้า:</strong>
+        ${faceSet.contour}, ${faceSet.highlight}, ${faceSet.blush}<br>
+        <strong>สรุป:</strong>
+        ใช้โทนสีผิว + ปรับคอนทัวร์/ไฮไลต์ตามรูปหน้า
+      `;
+    }
+
+    function calculateStyle(skin, body) {
+      return `
+        • <strong>ตามสีผิว:</strong> ${recommendations[skin].style}<br>
+        • <strong>ตามรูปร่าง:</strong> ${bodyStyle[body].style}<br>
+        <strong>สรุป:</strong>
+        เลือกสีตามผิว + ทรงตามรูปร่างเพื่อบาลานซ์
+      `;
+    }
+
+    /* ---------------------- อ้างอิง DOM ---------------------- */
+
+    const showBtn = document.getElementById('showBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    const skinSelect = document.getElementById('skin');
+    const bodySelect = document.getElementById('body');
+    const faceSelect = document.getElementById('face');
+
+    /* ---------------------- Preview รูป ---------------------- */
+
+    skinSelect.addEventListener('change', () => {
+      document.getElementById('skinImg').src = skinImages[skinSelect.value];
+    });
+
+    bodySelect.addEventListener('change', () => {
+      document.getElementById('bodyImg').src = bodyImages[bodySelect.value];
+    });
+
+    faceSelect.addEventListener('change', () => {
+      document.getElementById('faceImg').src = faceImages[faceSelect.value];
+    });
+
+    /* ---------------------- กดแสดงผล ---------------------- */
+
+    showBtn.addEventListener('click', () => {
+      const skin = skinSelect.value;
+      const body = bodySelect.value;
+      const face = faceSelect.value;
+
+      document.getElementById('skinText').textContent = skin;
+      document.getElementById('bodyText').textContent = body;
+      document.getElementById('faceText').textContent = face;
+
+      const colorsDiv = document.getElementById('colors');
+      colorsDiv.innerHTML = '';
+
+      recommendations[skin].colors.forEach(color => {
+        const span = document.createElement('span');
+        span.textContent = color;
+        span.className = "px-3 py-1 rounded-full border bg-white text-sm shadow-sm";
+        colorsDiv.appendChild(span);
+      });
+
+      document.getElementById('makeup').innerHTML = calculateMakeup(skin, face);
+      document.getElementById('style').innerHTML = calculateStyle(skin, body);
+
+      document.getElementById('result').classList.remove('hidden');
+     /* --------- รูปสีเสื้อ (คำนวณจากสีผิว) --------- */
+document.querySelectorAll("#colorImages img").forEach((img, i) => {
+  img.src = colorImagesBySkin[skin][i];
+});
+
+/* --------- รูปเมคอัพ (คำนวณจากรูปหน้า) --------- */
+document.querySelectorAll("#makeupImages img").forEach((img, i) => {
+  img.src = makeupImagesByFace[face][i];
+});
+
+/* --------- รูปสไตล์ (คำนวณจากรูปร่าง) --------- */
+document.querySelectorAll("#styleImages img").forEach((img, i) => {
+  img.src = styleImagesByBody[body][i];
+});
+
+    });
+
+    /* ---------------------- รีเซ็ต ---------------------- */
+
+    resetBtn.addEventListener('click', () => {
+      skinSelect.selectedIndex = 0;
+      bodySelect.selectedIndex = 0;
+      faceSelect.selectedIndex = 0;
+
+      document.getElementById('skinImg').src = skinImages[skinSelect.value];
+      document.getElementById('bodyImg').src = bodyImages[bodySelect.value];
+      document.getElementById('faceImg').src = faceImages[faceSelect.value];
+
+      document.getElementById('result').classList.add('hidden');
+    });
+
+    const colorsDivStyle =
+      "px-3 py-1 rounded-full border border-[#D6C4A8] bg-[#FFFDF9] text-sm text-[#6B4F3F] shadow-sm";
+  </script>
+
+</body>
+</html>
